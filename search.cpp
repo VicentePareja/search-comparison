@@ -40,13 +40,15 @@ int ternary_search()
     int guess;
     int number = rand() % 100 + 1;
     int low = 0;
+    int diff;
     int high = 100;
 
     std::cout << "current number = " << number << '\n';
 
     do
     {
-        guess = (high - low) / 3 + low + 1;
+        diff = high - low;
+        guess = diff / 3 + low + (diff % 3 > 0 ? 1 : 0);
         std::cout << "current guess = " << guess << '\n';
         std::cout << "low = " << low << '\n';
         std::cout << "high = " << high << '\n';
