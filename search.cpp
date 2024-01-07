@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <fstream>
 
 int search(int divisor, int low, int high, int number)
 {
@@ -38,19 +39,20 @@ int search(int divisor, int low, int high, int number)
 
 int main()
 {
+    std::ofstream outFile("averages.txt"); // Create an output file stream object
     double total = 0;
     int high = 10000;
-    for (int divisor = 2; divisor <= 100; divisor++)
-    {
 
+    for (int divisor = 2; divisor <= high / 100; divisor++)
+    {
         for (int number = 1; number <= high; number++)
         {
             total += search(divisor, 0, high, number);
         }
 
-        std::cout
-            << "The average was: " << total / high << "\n";
+        outFile << divisor << "," << total / high << "\n"; // Output to the file instead of console
     }
 
+    outFile.close(); // Close the file
     return 0;
 }
